@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "333993096145",
+    "project_id": "brew-coffee-c2210",
+    "storage_bucket": "brew-coffee-c2210.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333993096145:android:77b4f7c37d2f859aa026f0",
+        "android_client_info": {
+          "package_name": "com.nithinmahendran.brew_coffee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333993096145-goaprhou9f0qvokao2m3tp3gr6amp37i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_V2KRUi44Toe31OMVV559_2SjBfzv4jw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333993096145-goaprhou9f0qvokao2m3tp3gr6amp37i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

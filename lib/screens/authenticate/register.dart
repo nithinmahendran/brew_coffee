@@ -1,5 +1,7 @@
+import 'package:brew_coffee/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:brew_coffee/services/auth.dart';
+import 'package:brew_coffee/shared/loading.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
@@ -12,6 +14,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   String email = '';
   String password = '';
@@ -19,7 +22,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading(): Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: Colors.brown[400],
@@ -44,6 +47,7 @@ class _RegisterState extends State<Register> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  decoration: textInputDecoration.copyWith(hintText: 'Email'),
                   validator: (val) => val.isEmpty ? 'Enter an Email' : null,
                   onChanged: (val) {
                     setState(() => email = val);
@@ -53,6 +57,8 @@ class _RegisterState extends State<Register> {
                   height: 20.0,
                 ),
                 TextFormField(
+                  decoration:
+                      textInputDecoration.copyWith(hintText: 'Password'),
                   validator: (val) =>
                       val.length < 6 ? 'Enter a 6+ chars long' : null,
                   obscureText: true,
@@ -66,11 +72,15 @@ class _RegisterState extends State<Register> {
                 RaisedButton(
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
+                      setState(() => loading = true);
                       dynamic result = await _auth.registerWithEmailAndPassword(
                           email, password);
                       if (result == null) {
-                        setState(() => error = 'Please supply a valid email');
-                      } else {}
+                        setState(() {
+                          error = 'Please supply a valid email';
+                          loading=false; 
+                        });
+                      }
                     }
                   },
                   color: Colors.pink[400],
@@ -79,9 +89,11 @@ class _RegisterState extends State<Register> {
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-                SizedBox(height: 12.0,),
+                SizedBox(
+                  height: 12.0,
+                ),
                 Text(error,
-                style: TextStyle(color: Colors.red,fontSize: 14.0)),
+                    style: TextStyle(color: Colors.red, fontSize: 14.0)),
               ],
             ),
           )),

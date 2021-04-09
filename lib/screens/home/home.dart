@@ -1,3 +1,4 @@
+import 'package:brew_coffee/screens/home/settings_form.dart';
 import 'package:brew_coffee/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:brew_coffee/services/database.dart';
@@ -15,7 +16,7 @@ class Home extends StatelessWidget {
           builder: (context) {
             return Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-               child: Text('Bottom Sheet'),
+              child: SettingsForm(),
             );
           });
     }
@@ -35,14 +36,19 @@ class Home extends StatelessWidget {
                 },
                 icon: Icon(Icons.person),
                 label: Text('Logout')),
-              FlatButton.icon(
+            FlatButton.icon(
               icon: Icon(Icons.settings),
               label: Text('Settings'),
               onPressed: () => _showSettingsPanel(),
             )
           ],
         ),
-        body: BrewList(),
+        body: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/coffee_bg.png'),
+                    fit: BoxFit.cover)),
+            child: BrewList()),
       ),
     );
   }
